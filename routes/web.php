@@ -11,6 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('login');
+// });
+
+Route::group(['middleware' => 'auth:web'], function() {
+    
+    Route::get('/', function () {
+        return view('react');
+    });
+
+    Route::get('/user', function () {
+        return view('react');
+    });    
+
+    Route::get('/user/create', function () {
+        return view('react');
+    });
+
+    Route::get('/user/edit/{id}', function ($id) {
+        return view('react');
+    });    
 });
+
+
+
+
+// Route::resource('user', 'UserController');
+Auth::routes();
+
+// Route::get('/user', 'HomeController@index')->name('home');
+
