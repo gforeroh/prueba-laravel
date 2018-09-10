@@ -14,20 +14,7 @@ class UserController extends Controller
     private $listDocument = [1 => 'Cédula Ciudadania', 2 => 'Cédula Extranjeria', 3 => 'Pasaporte'];
 
     public function userAuth(){
-        dd("jajajaja"); die;
-        $user = Auth::user();
-        dd($user); die;
-
-
-        // $userAuth = Auth::guard('api')->user();
-        
-
-        // $user = Auth::user();
-        // dd("Mama");
-        // dd($user); 
-        // die;
-
-
+        return Auth::user();
     }
 
     public function index(){

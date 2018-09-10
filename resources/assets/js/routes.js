@@ -7,6 +7,8 @@ import App from './components/App';
 import List from './components/user/lista';
 import Create from './components/user/crear';
 import Edit from './components/user/edit';
+import Grilla from './components/user/grilla';
+
 
 const AppRoutes = () =>
     <App>
@@ -14,6 +16,7 @@ const AppRoutes = () =>
             <Route exact path="/user" component={ List } />
             <Route exact path="/user/create" component={ Create } />
             <Route exact path="/user/edit/:id" component={ Edit } />
+            <Route exact path="/user/grilla" component={ Grilla } />
         </Switch>
     </App>;
 

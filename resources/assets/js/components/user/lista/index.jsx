@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import TableUsers from './tableUsers';
 
 
 class User extends Component {
     constructor() {
         super();
         this.state = {
-            users: null
+            users: null,
+            file: null
         }
         this.handleUpdateClick = this.handleUpdateClick.bind(this);
     }
@@ -37,8 +39,6 @@ class User extends Component {
         this.handleUpdateClick();
     }
 
-    
-
     render() {
         let users = null, 
             listDocument = null;
@@ -48,57 +48,23 @@ class User extends Component {
             listDocument = this.state.users.listDocument;
         }
 
-        const doSomething = function (event) {
-            if (window.confirm('Seguro que quieres eliminar este item?')){
-                alert('Se elimino el Item');
-            } else {
-                event.preventDefault();
-            }
-        }
-
         return (
-            <div className="container">
+            <div className="container">                                
+                <input type="file" name="fileTxt" id="fileTxt" className="btn" onChange={(e) => {
+                    const reader = new FileReader()
+                    reader.onload = event => {
+                        const text = event.target.result
+                        this.setState({ file: text })                        
+                    }
+                    reader.onerror = error => reject(error)
+                    reader.readAsText(e.target.files[0]);
+                }}/>
+                <a href="./user/grilla" className="btn btn-primary"  style={{ marginLeft: '10px' }}>Mostrar grilla</a>   
                 <br/><br/>
-                <a href="./user/create" className="btn btn-primary">Nuevo</a>                
-                <br/><br/>
-                {users ?   
-                    <table className="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Tipo documento</th>
-                                <th>Documento</th>
-                                <th colSpan="2">Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user, i) => {                
-                                return <tr key={i}>
-                                        <td>{user.id}</td>
-                                        <td>{user.name}</td>
-                                        <td>{user.email}</td>
-                                        <td>{listDocument[user.type_document]}</td>
-                                        <td>{user.document}</td>
-                                        <td><a href={`/user/edit/${user.id}`} className="btn btn-warning">Editar</a></td>
-                                        <td>
-                                        <form action={`./api/user/${user.id}`} method="post" onSubmit={doSomething}>
-                                                <input name="_method" type="hidden" value="DELETE"></input>
-                                            <button className="btn btn-danger" type="submit" >Eliminar</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                            })}
-                        </tbody>
-                    </table>
-                :
-                    ''
-                }
+                { users ? <TableUsers users={users} listDocument={listDocument} /> : '' }
             </div>
         );
     }
 }
 
 export default User;
-

@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth:web'], function() {
     Route::get('/user/edit/{id}', function ($id) {
         return view('react');
     });    
+
+    Route::get('/user/grilla', function () {
+        return view('react');
+    });
 });
 
 
