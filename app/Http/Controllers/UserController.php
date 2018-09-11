@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Hash;
 use App\User;
-// use Illuminate\Support\Facades\Auth;
-use Auth;
+use Hash;
 
 
 class UserController extends Controller
@@ -103,8 +102,4 @@ class UserController extends Controller
         
         return response()->json(null, 204);
     }
-
-    // public function login(){
-    //     return view('user.login');
-    // }
 }

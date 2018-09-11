@@ -50,16 +50,8 @@ class User extends Component {
 
         return (
             <div className="container">                                
-                <input type="file" name="fileTxt" id="fileTxt" className="btn" onChange={(e) => {
-                    const reader = new FileReader()
-                    reader.onload = event => {
-                        const text = event.target.result
-                        this.setState({ file: text })                        
-                    }
-                    reader.onerror = error => reject(error)
-                    reader.readAsText(e.target.files[0]);
-                }}/>
-                <a href="./user/grilla" className="btn btn-primary"  style={{ marginLeft: '10px' }}>Mostrar grilla</a>   
+                <a href="./text/upload" className="btn btn-primary" style={{ marginLeft: '10px' }}>Cargar archivo</a>   
+                <a href="./text/grilla" className="btn btn-primary"  style={{ marginLeft: '10px' }}>Mostrar grilla</a>   
                 <br/><br/>
                 { users ? <TableUsers users={users} listDocument={listDocument} /> : '' }
             </div>

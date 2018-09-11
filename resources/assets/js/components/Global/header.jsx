@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class Header extends Component {
     render() {
         const { userAuth } = this.props;      
-        // console.log(userAuth);
                
         return (
             <nav className="navbar navbar-default navbar-static-top">

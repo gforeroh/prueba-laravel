@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Textos;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -33,5 +34,10 @@ class User extends Authenticatable
         $this->save();
 
         return $this->api_token;
+    }
+
+    public function textos()
+    {
+        return $this->belongsTo('App\Textos', 'user_id');
     }
 }

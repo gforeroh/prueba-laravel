@@ -17,12 +17,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::group(['middleware' => 'auth:api'], function() {    
     Route::get('user', 'UserController@index');
     Route::get('user/{id}', 'UserController@show');
     Route::get('user/create', 'UserController@create');
     Route::get('auth', 'UserController@userAuth');
+
+
+    Route::get('text', 'TextoController@index');
+    
+
+
+    
 });
 
 Route::post('user', 'UserController@store');
@@ -31,6 +37,11 @@ Route::delete('user/{id}', 'UserController@delete');
 
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
+
+/* Model Texto */
+
+Route::post('text', 'TextoController@store');
+
 
 
 // Route::get('articles', 'ArticleController@index');

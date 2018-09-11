@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ( $user->isAdmin() ) {// do your margic here
+        if ( $user->isAdmin() ) {
             return redirect()->route('dashboard');
         }
 
@@ -65,22 +65,21 @@ class LoginController extends Controller
             // ]);
         }
 
-        // dd($this->sendFailedLoginResponse($request)); die;
+        // dd($this->sendFailedLoginResponse($request));
         return $this->sendFailedLoginResponse($request);
     }
 
     public function logout(Request $request)
     {
-        // dd(Auth::guard('web')->user()); die;
+        Auth::logout();
         $user = Auth::guard('api')->user();
-
-        // dd($user); die;
         
         if ($user) {
             $user->api_token = null;
             $user->save();
         }
 
-        return response()->json(['data' => 'User logged out.'], 200);
+        return redirect('/login');
+        // return response()->json(['data' => 'User logged out.'], 200);
     }
 }

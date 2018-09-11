@@ -13,7 +13,6 @@ class Content extends Component {
 
     handleUpdateClick() {
         const apiToken = document.getElementById('api_token').value;     
-        // console.log(apiToken);
            
         fetch('/api/auth', {
             method: 'GET',

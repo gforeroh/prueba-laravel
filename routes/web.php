@@ -33,7 +33,12 @@ Route::group(['middleware' => 'auth:web'], function() {
         return view('react');
     });    
 
-    Route::get('/user/grilla', function () {
+    /* Rutas para cargue de archivos */
+    Route::get('/text/upload', function () {
+        return view('react');
+    });
+
+    Route::get('/text/grilla', function () {
         return view('react');
     });
 });
@@ -44,5 +49,5 @@ Route::group(['middleware' => 'auth:web'], function() {
 // Route::resource('user', 'UserController');
 Auth::routes();
 
-// Route::get('/user', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout');
 
